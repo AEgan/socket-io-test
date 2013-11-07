@@ -5,6 +5,7 @@
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript" src="javascripts/client.js"></script>
+		<link rel="stylesheet" type="text/css" href="stylesheets/socketstyle.css">
 	</head>
 	<body>
 		<h1>SocketIO Test</h1>
@@ -12,6 +13,8 @@
 		<!-- Form where the submission button will serve as a test -->
 		<!-- The reason I made this a form is so that I can adjust it later to add a text box-->
 		<form id="f1">
+			<input type="text" name="name" id="name" placeholder="name">
+			<input type="text" name="message" id="message" placeholder="Chat about nothing">
 			<input type="submit" value="test js">
 		</form>
 	</body>

@@ -11,7 +11,8 @@ socket.on('test', function(data) {
 
 // the submission callback is here, sends the messagesent message to the server
 function messageSubmit() {
-	socket.emit('messageSent', { value: "test" });
+	socket.emit('messageSent', { name: $("#name").val(), message: $("#message").val() });
+	return false;
 }
 
 // the server responds with a messageresponse message
