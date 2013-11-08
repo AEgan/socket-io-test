@@ -23,8 +23,19 @@ socket.on('sendChat', function(data){
 	ul.append("<li>" + data.name + ":  " + data.message + " </li");
 });
 
+// when a new name is connected, display all names
+socket.on('newName', function(data){
+	$("#nameList").html("");
+	for(var property in data.names) {
+		$("#nameList").append("<li>" + data.names[property] + "</li>");
+	}
+});
+
+// set the name, send it to server, show user they are connected as their name
 function setName() {
 	$("#nameForm").fadeOut();
 	$("#f1").fadeIn();
+	$("#testArea").text("Connected as " + $("#name").val());
+	socket.emit('nameEntered', { name: $("#name").val() });
 	return false;
 }
