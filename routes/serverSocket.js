@@ -2,7 +2,7 @@ exports.init = function(io) {
 	var connectedNames = {};
 	io.sockets.on('connection', function(socket) {
 		// on connection, see if the basics work
-		socket.emit('test', {message: "Test worked"});
+		socket.emit('test', {message: "SocketIO working properly"});
 
 		// when the client sends a 'message sent' message, we do this
 		socket.on('messageSent', function(data){

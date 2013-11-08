@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Hello</title>
+		<title>SocketIO Test</title>
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript" src="javascripts/client.js"></script>
 		<link rel="stylesheet" type="text/css" href="stylesheets/socketstyle.css">
 	</head>
 	<body>
-		<h1>SocketIO Test</h1>
 
-		<!-- Did you connect properly? -->
-		<span id="testArea">NOT connected with SocketIO</span>
-
-		<!-- Form to set a name -->
-		<form id="nameForm">
-			<input type="text" name="name" id="name" placeholder="name">
-			<input type="submit" value="Set Name">
-		</form>
-
-		<!-- Shows all connected Users -->
-		<div id="connectedUsers">
-			<p>Connected Users</p>
-			<ul id="nameList"></ul>
+		<!-- Custom navigation -->
+		<div id="custNav">
+			<ul>
+				<li>SocketIO Test</li>
+				<li><a href="https://github.com/AEgan/socket-io-test">Fork on Github!</a></li>
+			</ul>
 		</div>
 
-		<!-- The chat list -->
-		<ul id="chatUL"></ul>
+		<!-- Container to style things under the nav bar -->
+		<div id="container">
+			<!-- Did you connect properly? -->
+			<span id="testArea">NOT connected with SocketIO</span>
 
-		<!-- Message box -->
-		<form id="f1" hidden>
-			<input type="text" name="message" id="message" placeholder="Chat about nothing">
-			<input type="submit" value="test js">
-		</form>
+			<!-- Form to set a name -->
+			<form id="nameForm">
+				<input type="text" name="name" id="name" placeholder="name">
+				<input type="submit" value="Set Name">
+			</form>
+
+			<!-- Shows all connected Users -->
+			<div id="connectedUsers">
+				<p><span id="connectedSpan">Set name to view connected users</span></p>
+				<ul id="nameList"></ul>
+			</div>
+
+			<!-- The chat list -->
+			<div id="chat" hidden>
+				<hr>
+				<ul id="chatUL"></ul>
+				<!-- Message box -->
+				<form id="f1">
+					<input type="text" name="message" id="message" placeholder="Chat about nothing">
+					<input type="submit" value="Chat">
+				</form>
+			</div>
+		</div>
 	</body>
 </html>

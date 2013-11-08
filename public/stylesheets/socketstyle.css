@@ -1,5 +1,39 @@
-/*lol no need for style yet */
+/* body will have dark text and a gray background */
 body {
-/*	background-color: #000000;
-	color: #00FF00*/
+	width: 100%;
+	color: #121212;
+	background-color: #E0E0E0;
+	margin: 0px 0px 0px 0px;
 }
+
+#custNav > ul {
+	margin-top: 0px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #2E8B57;
+	content: " ";
+}
+
+#custNav > ul > li {
+	color: #FFFFFF;
+	display: inline;
+	font-size: x-large;
+	margin-right: 12px;
+}
+
+#custNav > ul > li > a {
+	font-size: large;
+	text-decoration: none;
+	color: #EEEEEE;
+}
+
+#custNav > ul > li > a:hover {
+	color: #FFFFFF;
+}
+
+#container {
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+

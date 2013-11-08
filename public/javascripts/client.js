@@ -34,8 +34,9 @@ socket.on('newName', function(data){
 // set the name, send it to server, show user they are connected as their name
 function setName() {
 	$("#nameForm").fadeOut();
-	$("#f1").fadeIn();
+	$("#chat").fadeIn();
 	$("#testArea").text("Connected as " + $("#name").val());
 	socket.emit('nameEntered', { name: $("#name").val() });
+	$("#connectedSpan").text("Connected Users:")
 	return false;
 }
