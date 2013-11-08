@@ -8,7 +8,8 @@ exports.init = function(io) {
 			console.log('NAME WAS ' + data.name);
 			console.log('MESSAGE WAS ' + data.message);
 			// reply by emiting only to the client that sent the message with this here response
-			socket.emit('messageResponse', {message: "got this: " + data.message + "from " + data.name + " and my response is this message"});
+			socket.emit('sendChat', {name: data.name, message: data.message});
+			socket.broadcast.emit('sendChat', {name: data.name, message: data.message});
 		});
 	});
 }

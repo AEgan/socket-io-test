@@ -12,12 +12,12 @@ socket.on('test', function(data) {
 // the submission callback is here, sends the messagesent message to the server
 function messageSubmit() {
 	socket.emit('messageSent', { name: $("#name").val(), message: $("#message").val() });
+	$("#message").val("");
 	return false;
 }
 
-// the server responds with a messageresponse message
-socket.on('messageResponse', function(data) {
-	console.log('here');
-	// alert with the message for now.
-	alert('server hearing this: ' + data.message);
+// server responds by sending the chat message to everyone
+socket.on('sendChat', function(data){
+	var ul = $("#chatUL");
+	ul.append("<li>" + data.name + ":  " + data.message + " </li");
 });
