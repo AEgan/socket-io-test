@@ -1,6 +1,7 @@
 // the submit callback 
 $(function() {
 	$("#f1").submit(messageSubmit);
+	$("#nameForm").submit(setName);
 });
 
 var socket = io.connect('/');
@@ -21,3 +22,9 @@ socket.on('sendChat', function(data){
 	var ul = $("#chatUL");
 	ul.append("<li>" + data.name + ":  " + data.message + " </li");
 });
+
+function setName() {
+	$("#nameForm").fadeOut();
+	$("#f1").fadeIn();
+	return false;
+}

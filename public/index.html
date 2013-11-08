@@ -10,11 +10,14 @@
 	<body>
 		<h1>SocketIO Test</h1>
 		<span id="testArea">didn't work</span>
+		<form id="nameForm">
+			<input type="text" name="name" id="name" placeholder="name">
+			<input type="submit" value="Set Name">
+		</form>
 		<ul id="chatUL"></ul>
 		<!-- Form where the submission button will serve as a test -->
 		<!-- The reason I made this a form is so that I can adjust it later to add a text box-->
-		<form id="f1">
-			<input type="text" name="name" id="name" placeholder="name">
+		<form id="f1" hidden>
 			<input type="text" name="message" id="message" placeholder="Chat about nothing">
 			<input type="submit" value="test js">
 		</form>
