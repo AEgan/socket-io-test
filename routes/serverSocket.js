@@ -8,9 +8,10 @@ exports.init = function(io) {
 		socket.on('messageSent', function(data){
 			console.log('NAME WAS ' + data.name);
 			console.log('MESSAGE WAS ' + data.message);
+			var messageToEmit = filterInput(data.message);
 			// reply by emiting only to the client that sent the message with this here response
-			socket.emit('sendChat', {name: data.name, message: data.message});
-			socket.broadcast.emit('sendChat', {name: data.name, message: data.message});
+			socket.emit('sendChat', {name: data.name, message: messageToEmit});
+			socket.broadcast.emit('sendChat', {name: data.name, message: messageToEmit});
 		});
 
 		// when a name is entered, let people know who is connected, add username to list
@@ -29,4 +30,17 @@ exports.init = function(io) {
 		});
 
 	});
+
+	// a filterInput function to make sure people don't get crafty with xss
+	// even though this isn't fully secure obviously
+	function filterInput(unfiltered){
+		var filtered = unfiltered.replace("<", "&#60;");
+		filtered = filtered.replace(">", "&#62;");
+		if(filtered === unfiltered) {
+			return filtered;
+		}
+		else {
+			return filterInput(filtered);
+		}
+	}
 }
