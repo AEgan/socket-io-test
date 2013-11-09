@@ -25,7 +25,7 @@
 			<!-- Form to set a name -->
 			<form id="nameForm">
 				<input type="text" name="name" id="name" placeholder="name">
-				<input type="submit" value="Set Name">
+				<input type="submit" value="Set Name" class="orange">
 			</form>
 
 			<!-- Shows all connected Users -->
@@ -39,10 +39,9 @@
 				<hr>
 				<ul id="chatUL"></ul>
 				<!-- Message box -->
-				<form id="f1">
-					<input type="text" name="message" id="message" placeholder="Chat about nothing">
-					<input type="submit" value="Chat">
-				</form>
+				<textarea id="chatTextArea" placeholder="Chat about... nothing"></textarea>
+				<br>
+				<button id="submitChat" class="orange">Chat</button>
 			</div>
 		</div>
 	</body>
