@@ -1,6 +1,6 @@
 // the submit callback 
 $(function() {
-	$("#f1").submit(messageSubmit);
+	$("#submitChat").click(chatSubmit);
 	$("#nameForm").submit(setName);
 });
 
@@ -9,13 +9,6 @@ var socket = io.connect('/');
 socket.on('test', function(data) {
 	$("#testArea").text(data.message);
 });
-
-// the submission callback is here, sends the messagesent message to the server
-function messageSubmit() {
-	socket.emit('messageSent', { name: $("#name").val(), message: $("#message").val() });
-	$("#message").val("");
-	return false;
-}
 
 // server responds by sending the chat message to everyone
 socket.on('sendChat', function(data){
@@ -31,12 +24,28 @@ socket.on('newName', function(data){
 	}
 });
 
+// submits a chat message
+function chatSubmit() {
+	var str = $("#chatTextArea").val();
+	socket.emit('messageSent', { name: $("#name").val(), message: str });
+	$("#chatTextArea").val("");
+}
+
 // set the name, send it to server, show user they are connected as their name
 function setName() {
 	$("#nameForm").fadeOut();
 	$("#chat").fadeIn();
 	$("#testArea").text("Connected as " + $("#name").val());
 	socket.emit('nameEntered', { name: $("#name").val() });
-	$("#connectedSpan").text("Connected Users:")
+	$("#connectedSpan").text("Connected Users:");
+	// now that this works we can set the text area to submit on enter. Taken from 
+	// http://stackoverflow.com/questions/789701/submitting-data-from-textarea-by-hitting-enter
+	document.getElementById("chatTextArea").onkeyup = function(e){
+	  e = e || event;
+	  if (e.keyCode === 13) {
+	    chatSubmit();
+	  }
+	  return true;
+	 }
 	return false;
 }
