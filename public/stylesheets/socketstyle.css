@@ -36,4 +36,11 @@ body {
 	margin-right: 5%;
 }
 
+#chatUL {
+	color: #000000;
+}
+
+#chatUL > li {
+	display: block;
+}
 
