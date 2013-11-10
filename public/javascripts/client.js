@@ -5,6 +5,7 @@ $(function() {
 });
 
 var socket = io.connect('/');
+var nameStr;
 // check for the initial test 
 socket.on('test', function(data) {
 	$("#testArea").text(data.message);
@@ -24,10 +25,17 @@ socket.on('newName', function(data){
 	}
 });
 
+// sets the name in the form to a filtered name so there is less xss 
+socket.on('filterName', function(data){
+	$("#name").val("" + data.name);
+	nameStr = data.name;
+	console.log(nameStr);
+});
+
 // submits a chat message
 function chatSubmit() {
 	var str = $("#chatTextArea").val();
-	socket.emit('messageSent', { name: $("#name").val(), message: str });
+	socket.emit('messageSent', { name: nameStr, message: str });
 	$("#chatTextArea").val("");
 }
 

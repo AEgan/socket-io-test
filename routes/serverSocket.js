@@ -15,10 +15,12 @@ exports.init = function(io) {
 		});
 
 		// when a name is entered, let people know who is connected, add username to list
+		// also filter the name and send it back so it does not cause xss
 		socket.on('nameEntered', function(data){
-			var nameString = data.name;
-			socket.username = data.name;
+			var nameString = filterInput(data.name);
+			socket.username = nameString;
 			connectedNames[nameString] = nameString;
+			socket.emit('filterName', {name: nameString});
 			socket.emit('newName', {names: connectedNames});
 			socket.broadcast.emit('newName', { names: connectedNames });
 		});
