@@ -14,7 +14,9 @@ socket.on('test', function(data) {
 // server responds by sending the chat message to everyone
 socket.on('sendChat', function(data){
 	var ul = $("#chatUL");
-	ul.append("<li>" + data.name + ":  " + data.message + " </li");
+	var dateArray = data.date.split(' ');
+	var dateString = dateArray[4].substring(0, dateArray[4].length - 3);
+	ul.append("<li>" + data.name + ":  " + data.message + " -- at " + dateString + " </li>");
 });
 
 // when a new name is connected, display all names
@@ -29,7 +31,6 @@ socket.on('newName', function(data){
 socket.on('filterName', function(data){
 	$("#name").val("" + data.name);
 	nameStr = data.name;
-	console.log(nameStr);
 });
 
 // submits a chat message

@@ -17,7 +17,7 @@ node app
 ```
 Which will start a local server on port 12345. This port number can be changed in app.js
 
-Currently tags are not being stripped to protect against XSS.
+Tags are now being escapted on output to avoid xss, even though this will probably only ever be run on my computer
 
 Will work on that later lol.
 
