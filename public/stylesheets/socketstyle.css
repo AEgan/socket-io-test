@@ -45,6 +45,16 @@ body {
 	list-style: none;
 }
 
+.nameSpan {
+	font-weight: bold;
+	color: #FF0000;
+}
+
+.dateSpan {
+	font-size: 12px;
+	color: #BABABA;
+}
+
 #chatTextArea {
 	resize: none;
 	width: 250px;

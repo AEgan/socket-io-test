@@ -16,7 +16,7 @@ socket.on('sendChat', function(data){
 	var ul = $("#chatUL");
 	var dateArray = Date().split(' ');
 	var dateString = dateArray[4].substring(0, dateArray[4].length - 3);
-	ul.append("<li>" + data.name + ":  " + data.message + " -- at " + dateString + " </li>");
+	ul.append("<li><span class='nameSpan'>" + data.name + "</span>:  " + data.message + " <span class='dateSpan'>-- at " + dateString + "</span></li>");
 });
 
 // when a new name is connected, display all names
