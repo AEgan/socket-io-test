@@ -9,10 +9,9 @@ exports.init = function(io) {
 			console.log('NAME WAS ' + data.name);
 			console.log('MESSAGE WAS ' + data.message);
 			var messageToEmit = filterInput(data.message);
-			var theDate = Date();
 			// reply by emiting only to the client that sent the message with this here response
-			socket.emit('sendChat', {name: data.name, message: messageToEmit, date: theDate });
-			socket.broadcast.emit('sendChat', {name: data.name, message: messageToEmit, date: theDate});
+			socket.emit('sendChat', {name: data.name, message: messageToEmit });
+			socket.broadcast.emit('sendChat', {name: data.name, message: messageToEmit });
 		});
 
 		// when a name is entered, let people know who is connected, add username to list

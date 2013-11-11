@@ -14,7 +14,7 @@ socket.on('test', function(data) {
 // server responds by sending the chat message to everyone
 socket.on('sendChat', function(data){
 	var ul = $("#chatUL");
-	var dateArray = data.date.split(' ');
+	var dateArray = Date().split(' ');
 	var dateString = dateArray[4].substring(0, dateArray[4].length - 3);
 	ul.append("<li>" + data.name + ":  " + data.message + " -- at " + dateString + " </li>");
 });
@@ -37,6 +37,7 @@ socket.on('filterName', function(data){
 function chatSubmit() {
 	// make sure the text are isn't empty
 	if($.trim($("#chatTextArea").val())){
+		var str = $("#chatTextArea").val();
 		socket.emit('messageSent', { name: nameStr, message: str });
 		// clear the text area
 		$("#chatTextArea").val("");
