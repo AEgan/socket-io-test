@@ -6,6 +6,7 @@ $(function() {
 
 var socket = io.connect('/');
 var nameStr;
+var colStr;
 // check for the initial test 
 socket.on('test', function(data) {
 	$("#testArea").text(data.message);
@@ -16,7 +17,9 @@ socket.on('sendChat', function(data){
 	var ul = $("#chatUL");
 	var dateArray = Date().split(' ');
 	var dateString = dateArray[4].substring(0, dateArray[4].length - 3);
-	ul.append("<li><span class='nameSpan'>" + data.name + "</span>:  " + data.message + " <span class='dateSpan'>-- at " + dateString + "</span></li>");
+	var nameSpanPart = "<span class='nameSpan' style='color: " + data.color + "'>" + data.name + "</span>";
+	var toAppend = $("<li>" + nameSpanPart + ":  " + data.message + " <span class='dateSpan'>-- at " + dateString + "</span></li>");
+	ul.append(toAppend);
 });
 
 // when a new name is connected, display all names
@@ -38,7 +41,7 @@ function chatSubmit() {
 	// make sure the text are isn't empty
 	if($.trim($("#chatTextArea").val())){
 		var str = $("#chatTextArea").val();
-		socket.emit('messageSent', { name: nameStr, message: str });
+		socket.emit('messageSent', { name: nameStr, message: str, color: colStr });
 		// clear the text area
 		$("#chatTextArea").val("");
 	}
@@ -47,6 +50,7 @@ function chatSubmit() {
 // set the name, send it to server, show user they are connected as their name
 function setName() {
 	$("#nameForm").fadeOut();
+	colStr = $("#dispColor").val()
 	$("#chat").fadeIn();
 	$("#testArea").text("Connected as " + $("#name").val());
 	socket.emit('nameEntered', { name: $("#name").val() });
