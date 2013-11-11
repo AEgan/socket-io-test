@@ -19,7 +19,5 @@ Which will start a local server on port 12345. This port number can be changed i
 
 Tags are now being escapted on output to avoid xss, even though this will probably only ever be run on my computer
 
-Will work on that later lol.
-
 <3
 Alex

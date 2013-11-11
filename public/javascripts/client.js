@@ -35,9 +35,12 @@ socket.on('filterName', function(data){
 
 // submits a chat message
 function chatSubmit() {
-	var str = $("#chatTextArea").val();
-	socket.emit('messageSent', { name: nameStr, message: str });
-	$("#chatTextArea").val("");
+	// make sure the text are isn't empty
+	if($.trim($("#chatTextArea").val())){
+		socket.emit('messageSent', { name: nameStr, message: str });
+		// clear the text area
+		$("#chatTextArea").val("");
+	}
 }
 
 // set the name, send it to server, show user they are connected as their name

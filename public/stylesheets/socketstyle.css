@@ -42,6 +42,7 @@ body {
 
 #chatUL > li {
 	display: block;
+	list-style: none;
 }
 
 #chatTextArea {
