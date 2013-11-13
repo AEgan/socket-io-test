@@ -2,7 +2,9 @@
 $(function() {
 	$("#submitChat").click(chatSubmit);
 	$("#nameForm").submit(setName);
+	console.log('ha');
 });
+
 
 var socket = io.connect('/');
 var nameStr;
@@ -48,15 +50,22 @@ function chatSubmit() {
 		// clear the text area
 		$("#chatTextArea").val("");
 	}
+	else {
+		$("#errorDescription").html("Must type in a message before to send it");
+		$("#ErrorArea").show();
+	}
 }
 
 // set the name, send it to server, show user they are connected as their name
 function setName() {
 	if(!$.trim($("#name").val())) {
-		alert("you have to enter a name buddy!");
+		$("#errorDescription").html("Must type in a name before you can chat");
+		$("#ErrorArea").show();
+		return false;
 	}
 	else {
 		$("#nameForm").fadeOut();
+		$("#ErrorArea").hide();
 		colStr = $("#dispColor").val()
 		$("#chat").fadeIn();
 		$("#testArea").text("Connected as " + $("#name").val());
