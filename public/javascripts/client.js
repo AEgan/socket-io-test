@@ -20,6 +20,9 @@ socket.on('sendChat', function(data){
 	var nameSpanPart = "<span class='nameSpan' style='color: " + data.color + "'>" + data.name + "</span>";
 	var toAppend = $("<li>" + nameSpanPart + ":  " + data.message + " <span class='dateSpan'>-- at " + dateString + "</span></li>");
 	ul.append(toAppend);
+	if(ul.find("li").length >= 20) {
+		ul.find("li").first().remove();
+	}
 });
 
 // when a new name is connected, display all names
@@ -49,20 +52,25 @@ function chatSubmit() {
 
 // set the name, send it to server, show user they are connected as their name
 function setName() {
-	$("#nameForm").fadeOut();
-	colStr = $("#dispColor").val()
-	$("#chat").fadeIn();
-	$("#testArea").text("Connected as " + $("#name").val());
-	socket.emit('nameEntered', { name: $("#name").val() });
-	$("#connectedSpan").text("Connected Users:");
-	// now that this works we can set the text area to submit on enter. Taken from 
-	// http://stackoverflow.com/questions/789701/submitting-data-from-textarea-by-hitting-enter
-	document.getElementById("chatTextArea").onkeyup = function(e){
-	  e = e || event;
-	  if (e.keyCode === 13) {
-	    chatSubmit();
-	  }
-	  return true;
-	 }
-	return false;
+	if(!$.trim($("#name").val())) {
+		alert("you have to enter a name buddy!");
+	}
+	else {
+		$("#nameForm").fadeOut();
+		colStr = $("#dispColor").val()
+		$("#chat").fadeIn();
+		$("#testArea").text("Connected as " + $("#name").val());
+		socket.emit('nameEntered', { name: $("#name").val() });
+		$("#connectedSpan").text("Connected Users:");
+		// now that this works we can set the text area to submit on enter. Taken from 
+		// http://stackoverflow.com/questions/789701/submitting-data-from-textarea-by-hitting-enter
+		document.getElementById("chatTextArea").onkeyup = function(e){
+		  e = e || event;
+		  if (e.keyCode === 13) {
+		    chatSubmit();
+		  }
+		  return true;
+		 }
+		return false;
+	}
 }
